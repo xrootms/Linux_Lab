@@ -1,0 +1,199 @@
+ubuntu@ip-172-31-35-44:~$ pwd
+/home/ubuntu
+ubuntu@ip-172-31-35-44:~$ ls
+ubuntu@ip-172-31-35-44:~$ touch f1
+ubuntu@ip-172-31-35-44:~$ ls
+f1
+ubuntu@ip-172-31-35-44:~$ mkdir dir1
+ubuntu@ip-172-31-35-44:~$ ls
+dir1  f1
+ubuntu@ip-172-31-35-44:~$ ls -l
+total 4
+drwxrwxr-x 2 ubuntu ubuntu 4096 Nov 29 14:48 dir1
+-rw-rw-r-- 1 ubuntu ubuntu    0 Nov 29 14:48 f1
+
+ mkdir -p d2/d3/d4
+ubuntu@ip-172-31-35-44:~$ ls
+d2  dir1  f1
+ubuntu@ip-172-31-35-44:~$ cd d2
+ubuntu@ip-172-31-35-44:~/d2$ ls
+d3
+ubuntu@ip-172-31-35-44:~/d2$ cd d3
+ubuntu@ip-172-31-35-44:~/d2/d3$ ls
+d4
+ubuntu@ip-172-31-35-44:~/d2/d3$ cd d4
+ubuntu@ip-172-31-35-44:~/d2/d3/d4$ ls
+ubuntu@ip-172-31-35-44:~/d2/d3/d4$ pwd
+/home/ubuntu/d2/d3/d4
+ubuntu@ip-172-31-35-44:~/d2/d3/d4$ cd ..
+ubuntu@ip-172-31-35-44:~/d2/d3$ cd ../..
+ubuntu@ip-172-31-35-44:~$ pwd
+/home/ubuntu
+ubuntu@ip-172-31-35-44:~$ ls
+d2  dir1  f1
+ubuntu@ip-172-31-35-44:~$ ls -l
+total 8
+drwxrwxr-x 3 ubuntu ubuntu 4096 Nov 29 14:49 d2
+drwxrwxr-x 2 ubuntu ubuntu 4096 Nov 29 14:48 dir1
+-rw-rw-r-- 1 ubuntu ubuntu    0 Nov 29 14:48 f1
+ubuntu@ip-172-31-35-44:~$ tree
+
+sudo apt install tree
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following NEW packages will be installed:
+ubuntu@ip-172-31-35-44:~$ tree
+.
+├── d2
+│   └── d3
+│       └── d4
+├── dir1
+└── f1
+
+4 directories, 1 file
+ubuntu@ip-172-31-35-44:~$ ls
+d2  dir1  f1
+
+ubuntu@ip-172-31-35-44:~$
+ubuntu@ip-172-31-35-44:~$ rmdir dir1
+ubuntu@ip-172-31-35-44:~$ ls
+d2  f1
+ubuntu@ip-172-31-35-44:~$ rmdir d2
+rmdir: failed to remove 'd2': Directory not empty
+ubuntu@ip-172-31-35-44:~$ rm -rf d2
+ubuntu@ip-172-31-35-44:~$ ls
+f1
+ubuntu@ip-172-31-35-44:~$ rm f1
+ubuntu@ip-172-31-35-44:~$ ls
+
+ubuntu@ip-172-31-35-44:~$ cat > file1
+im from ranchi
+ubuntu@ip-172-31-35-44:~$ ls
+file1
+ubuntu@ip-172-31-35-44:~$ cat file1
+im from ranchi
+ubuntu@ip-172-31-35-44:~$ cp file1 file2
+ubuntu@ip-172-31-35-44:~$ ls
+file1  file2
+ubuntu@ip-172-31-35-44:~$ cat file2
+im from ranchi
+ubuntu@ip-172-31-35-44:~$ cat file1
+im from ranchi
+ubuntu@ip-172-31-35-44:~$ pwd
+/home/ubuntu
+ubuntu@ip-172-31-35-44:~$ cd /
+ubuntu@ip-172-31-35-44:/$ ls
+bin   home            lib64       opt   sbin  tmp      vmlinuz.old
+boot  initrd.img      lost+found  proc  snap  usr
+dev   initrd.img.old  media       root  srv   var
+etc   lib             mnt         run   sys   vmlinuz
+ubuntu@ip-172-31-35-44:/$ cd opt
+ubuntu@ip-172-31-35-44:/opt$ ls
+ubuntu@ip-172-31-35-44:/opt$ cd /home/ubuntu/
+ubuntu@ip-172-31-35-44:~$ ls
+file1  file2
+ubuntu@ip-172-31-35-44:~$ cp file2 /opt
+cp: cannot create regular file '/opt/file2': Permission denied
+ubuntu@ip-172-31-35-44:~$ sudo cp file2 /opt
+ubuntu@ip-172-31-35-44:~$ cd /opt
+ubuntu@ip-172-31-35-44:/opt$ ls
+file2
+ubuntu@ip-172-31-35-44:/opt$ cat file2
+im from ranchi
+ubuntu@ip-172-31-35-44:/opt$ cd
+ubuntu@ip-172-31-35-44:~$ pwd
+/home/ubuntu
+ubuntu@ip-172-31-35-44:~$ ls
+file1  file2
+
+ubuntu@ip-172-31-35-44:~$ ls
+dir5  dir6  file1  file2
+ubuntu@ip-172-31-35-44:~$ cp -r /opt
+cp: missing destination file operand after '/opt'
+Try 'cp --help' for more information.
+ubuntu@ip-172-31-35-44:~$ sudo cp -r /opt
+cp: missing destination file operand after '/opt'
+Try 'cp --help' for more information.
+ubuntu@ip-172-31-35-44:~$ sudo cp -r dir6 /opt
+ubuntu@ip-172-31-35-44:~$ cd /opt
+ubuntu@ip-172-31-35-44:/opt$ ls
+dir6  file2
+ubuntu@ip-172-31-35-44:/opt$ cd dir6
+ubuntu@ip-172-31-35-44:/opt/dir6$ cd
+ubuntu@ip-172-31-35-44:~$
+ubuntu@ip-172-31-35-44:~$ ls
+dir5  dir6  file1  file2
+ubuntu@ip-172-31-35-44:~$ sudo cd /opt
+sudo: cd: command not found
+ubuntu@ip-172-31-35-44:~$  cd /opt
+ubuntu@ip-172-31-35-44:/opt$ ls
+dir6  file2
+ubuntu@ip-172-31-35-44:/opt$ cd
+ubuntu@ip-172-31-35-44:~$ ls
+dir5  dir6  file1  file2
+
+ubuntu@ip-172-31-35-44:~$ mv file1
+mv: missing destination file operand after 'file1'
+Try 'mv --help' for more information.
+ubuntu@ip-172-31-35-44:~$ mv file1 /opt
+mv: cannot move 'file1' to '/opt/file1': Permission denied
+ubuntu@ip-172-31-35-44:~$ sudo mv file1 /opt
+ubuntu@ip-172-31-35-44:~$ cd /opt
+ubuntu@ip-172-31-35-44:/opt$ ls
+dir6  file1  file2
+ubuntu@ip-172-31-35-44:/opt$ cd
+ubuntu@ip-172-31-35-44:~$ ls
+dir5  dir6  file2
+ubuntu@ip-172-31-35-44:~$ ls
+dir5  dir6  file2
+ubuntu@ip-172-31-35-44:~$ mv file2 text9
+ubuntu@ip-172-31-35-44:~$ ls
+dir5  dir6  text9
+ubuntu@ip-172-31-35-44:~$ mv dir6 /opt
+mv: replace '/opt/dir6', overriding mode 0755 (rwxr-xr-x)? y
+mv: cannot move 'dir6' to '/opt/dir6': Permission denied
+ubuntu@ip-172-31-35-44:~$ ls
+dir5  dir6  text9
+ubuntu@ip-172-31-35-44:~$ sudo mv dir6 /opt
+ubuntu@ip-172-31-35-44:~$ ls
+dir5  text9
+ubuntu@ip-172-31-35-44:~$ cd /opt
+ubuntu@ip-172-31-35-44:/opt$ ls
+dir6  file1  file2
+ubuntu@ip-172-31-35-44:/opt$ ls
+dir6  file1  file2
+ubuntu@ip-172-31-35-44:/opt$ sudo mv dir6/ folder
+ubuntu@ip-172-31-35-44:/opt$ ls
+file1  file2  folder
+
+ubuntu@ip-172-31-35-44:/etc$ head passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+
+ubuntu@ip-172-31-35-44:/etc$ tail passwd
+syslog:x:102:106::/home/syslog:/usr/sbin/nologin
+messagebus:x:103:107::/nonexistent:/usr/sbin/nologin
+_apt:x:104:65534::/nonexistent:/usr/sbin/nologin
+lxd:x:105:65534::/var/lib/lxd/:/bin/false
+uuidd:x:106:110::/run/uuidd:/usr/sbin/nologin
+dnsmasq:x:107:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+landscape:x:108:112::/var/lib/landscape:/usr/sbin/nologin
+sshd:x:109:65534::/run/sshd:/usr/sbin/nologin
+pollinate:x:110:1::/var/cache/pollinate:/bin/false
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+
+ubuntu@ip-172-31-35-44:~$ ps -ef | grep /bin/bash
+ubuntu   13615  1821  0 15:23 pts/0    00:00:00 grep --color=auto /bin/bash
+
+
+
+
