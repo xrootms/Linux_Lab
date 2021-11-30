@@ -1,0 +1,38 @@
+##//User & Group//##
+$ls /home            (to check home dir)
+$ls /etc/passwd      (to check user's propertoes)
+$tail /etc/passwd    (last 10 user's propertoes)
+$head /etc/passwd    (top 10 user's propertoes)
+$grep jack /etc/passwd  (to check single user's propertoes)
+
+$passwd <username> (to set passward on user)
+$passwd <username> (to change passward of existing user)
+$cat /etc/shadow    (to check passwaed properties)
+$grep username> etc/shadow (to check passward properties)
+
+$usermod -l <new-username> <old-username> (to change username)
+$usermod -c "comment" <user>
+$usermod -c "admin" jhon
+$grep jhon /etc/passwd
+----------------
+$groupadd <groupname> (to create group)
+$tail /etc/group     (to check group properties)
+$gpasswd -a <user1> <groupname> (to add user in group)
+$gpasswd -M <user2> <user3> <user4> <groupname> (to add multiple users in group)
+$grep <groupname> /etc/group
+----------------------
+##//Attribute of files & Dirictory//##
+rwx r-- r--   1     root    root    32    july 04:00    file1
+permission   link   owner  gowner   siz    time&date    filename
+
+##//file permission//##
+   rwx rwx rwx       
+ -/---/---/---=    
+  own gown othr
+r=4
+w=2
+x=1
+# chmod 777 <filename>          (to change the access mode of file)
+# chown <userneme> <filename>   (to change the owner of file)
+# chgrp <group> <filename>      (to change the group of file)
+----------------------------------------------------------------------------
