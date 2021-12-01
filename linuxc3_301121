@@ -1,6 +1,7 @@
 ##//User & Group//##
 $ls /home            (to check home dir)
-$ls /etc/passwd      (to check user's propertoes)
+$cat /etc/passwd      (to check user's propertoes)
+$useradd <new_username> (to create a user)
 $tail /etc/passwd    (last 10 user's propertoes)
 $head /etc/passwd    (top 10 user's propertoes)
 $grep jack /etc/passwd  (to check single user's propertoes)
@@ -8,31 +9,190 @@ $grep jack /etc/passwd  (to check single user's propertoes)
 $passwd <username> (to set passward on user)
 $passwd <username> (to change passward of existing user)
 $cat /etc/shadow    (to check passwaed properties)
-$grep username> etc/shadow (to check passward properties)
+$grep <username> etc/shadow (to check passward properties)
 
-$usermod -l <new-username> <old-username> (to change username)
-$usermod -c "comment" <user>
-$usermod -c "admin" jhon
-$grep jhon /etc/passwd
+$usermod --login <new-username> <old-username> (to change username)
+$usermod -c "comment" <username>
+$usermod -c "admin" <username>
+$grep <username> /etc/passwd
 ----------------
 $groupadd <groupname> (to create group)
 $tail /etc/group     (to check group properties)
 $gpasswd -a <user1> <groupname> (to add user in group)
 $gpasswd -M <user2> <user3> <user4> <groupname> (to add multiple users in group)
 $grep <groupname> /etc/group
-----------------------
-##//Attribute of files & Dirictory//##
-rwx r-- r--   1     root    root    32    july 04:00    file1
-permission   link   owner  gowner   siz    time&date    filename
 
-##//file permission//##
-   rwx rwx rwx       
- -/---/---/---=    
-  own gown othr
-r=4
-w=2
-x=1
-# chmod 777 <filename>          (to change the access mode of file)
-# chown <userneme> <filename>   (to change the owner of file)
-# chgrp <group> <filename>      (to change the group of file)
 ----------------------------------------------------------------------------
+[ec2-user@ip-172-31-32-73 ~]$ ls /home
+ec2-user
+[ec2-user@ip-172-31-32-73 ~]$ tail /etc/passwd
+libstoragemgmt:x:999:997:daemon account for libstoragemgmt:/var/run/lsm:/sbin/no                                          login
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+rngd:x:998:996:Random Number Generator Daemon:/var/lib/rngd:/sbin/nologin
+rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+nfsnobody:x:65534:65534:Anonymous NFS User:/var/lib/nfs:/sbin/nologin
+ec2-instance-connect:x:997:995::/home/ec2-instance-connect:/sbin/nologin
+postfix:x:89:89::/var/spool/postfix:/sbin/nologin
+chrony:x:996:994::/var/lib/chrony:/sbin/nologin
+tcpdump:x:72:72::/:/sbin/nologin
+ec2-user:x:1000:1000:EC2 Default User:/home/ec2-user:/bin/bash
+
+[ec2-user@ip-172-31-32-73 ~]$ useradd suhail
+-bash: /usr/sbin/useradd: Permission denied
+[ec2-user@ip-172-31-32-73 ~]$ sudo useradd suhail
+[ec2-user@ip-172-31-32-73 ~]$ pwd
+/home/ec2-user
+[ec2-user@ip-172-31-32-73 ~]$ ls /home
+ec2-user  suhail
+
+[ec2-user@ip-172-31-32-73 ~]$ tail /etc/passwd
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+rngd:x:998:996:Random Number Generator Daemon:/var/lib/rngd:/sbin/nologin
+rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+nfsnobody:x:65534:65534:Anonymous NFS User:/var/lib/nfs:/sbin/nologin
+ec2-instance-connect:x:997:995::/home/ec2-instance-connect:/sbin/nologin
+postfix:x:89:89::/var/spool/postfix:/sbin/nologin
+chrony:x:996:994::/var/lib/chrony:/sbin/nologin
+tcpdump:x:72:72::/:/sbin/nologin
+ec2-user:x:1000:1000:EC2 Default User:/home/ec2-user:/bin/bash
+suhail:x:1001:1001::/home/suhail:/bin/bash
+[ec2-user@ip-172-31-32-73 ~]$ useradd ashis
+-bash: /usr/sbin/useradd: Permission denied
+[ec2-user@ip-172-31-32-73 ~]$ sudo useradd ashis
+[ec2-user@ip-172-31-32-73 ~]$ tail /etc/passwd
+rngd:x:998:996:Random Number Generator Daemon:/var/lib/rngd:/sbin/nologin
+rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+nfsnobody:x:65534:65534:Anonymous NFS User:/var/lib/nfs:/sbin/nologin
+ec2-instance-connect:x:997:995::/home/ec2-instance-connect:/sbin/nologin
+postfix:x:89:89::/var/spool/postfix:/sbin/nologin
+chrony:x:996:994::/var/lib/chrony:/sbin/nologin
+tcpdump:x:72:72::/:/sbin/nologin
+ec2-user:x:1000:1000:EC2 Default User:/home/ec2-user:/bin/bash
+suhail:x:1001:1001::/home/suhail:/bin/bash
+ashis:x:1002:1002::/home/ashis:/bin/bash
+
+[ec2-user@ip-172-31-32-73 ~]$ sudo passwd suhail
+Changing password for user suhail.
+New password:
+BAD PASSWORD: The password is a palindrome
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[ec2-user@ip-172-31-32-73 ~]$ tail /etc/passwd
+rngd:x:998:996:Random Number Generator Daemon:/var/lib/rngd:/sbin/nologin
+rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+nfsnobody:x:65534:65534:Anonymous NFS User:/var/lib/nfs:/sbin/nologin
+ec2-instance-connect:x:997:995::/home/ec2-instance-connect:/sbin/nologin
+postfix:x:89:89::/var/spool/postfix:/sbin/nologin
+chrony:x:996:994::/var/lib/chrony:/sbin/nologin
+tcpdump:x:72:72::/:/sbin/nologin
+ec2-user:x:1000:1000:EC2 Default User:/home/ec2-user:/bin/bash
+suhail:x:1001:1001::/home/suhail:/bin/bash
+ashis:x:1002:1002::/home/ashis:/bin/bash
+
+[ec2-user@ip-172-31-32-73 ~]$ sudo cat /etc/shadow
+root:*LOCK*:14600::::::
+bin:*:18313:0:99999:7:::
+daemon:*:18313:0:99999:7:::
+adm:*:18313:0:99999:7:::
+lp:*:18313:0:99999:7:::
+sync:*:18313:0:99999:7:::
+shutdown:*:18313:0:99999:7:::
+halt:*:18313:0:99999:7:::
+mail:*:18313:0:99999:7:::
+operator:*:18313:0:99999:7:::
+games:*:18313:0:99999:7:::
+ftp:*:18313:0:99999:7:::
+nobody:*:18313:0:99999:7:::
+systemd-network:!!:18943::::::
+dbus:!!:18943::::::
+rpc:!!:18943:0:99999:7:::
+libstoragemgmt:!!:18943::::::
+sshd:!!:18943::::::
+rngd:!!:18943::::::
+rpcuser:!!:18943::::::
+nfsnobody:!!:18943::::::
+ec2-instance-connect:!!:18943::::::
+postfix:!!:18943::::::
+chrony:!!:18943::::::
+tcpdump:!!:18943::::::
+ec2-user:!!:18962:0:99999:7:::
+suhail:$6$eBRdtMLW$zjuyHmq/EAf3Pncvsil3mDHR35MfFYqASZsx8XLZzUEWR8GZXHNIdnT5d9KMB                                          d5uT4/CBBc0lQe0CQ7HHZMY9.:18962:0:99999:7:::
+ashis:!!:18962:0:99999:7:::
+
+[ec2-user@ip-172-31-32-73 ~]$ sudo passwd ashis
+Changing password for user ashis.
+New password:
+BAD PASSWORD: The password is a palindrome
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[ec2-user@ip-172-31-32-73 ~]$ sudo tail /etc/shadow
+rngd:!!:18943::::::
+rpcuser:!!:18943::::::
+nfsnobody:!!:18943::::::
+ec2-instance-connect:!!:18943::::::
+postfix:!!:18943::::::
+chrony:!!:18943::::::
+tcpdump:!!:18943::::::
+ec2-user:!!:18962:0:99999:7:::
+suhail:$6$eBRdtMLW$zjuyHmq/EAf3Pncvsil3mDHR35MfFYqASZsx8XLZzUEWR8GZXHNIdnT5d9KMB                                          d5uT4/CBBc0lQe0CQ7HHZMY9.:18962:0:99999:7:::
+ashis:$6$wzsHnlxv$/K/4U3FFsca4sT4AIZvz3CEFNDu3Gm1lXpXUMZnGzfQ27urVEUkAcwS8Qc9UQ0                                          58U8Ai6MXrLhaHb5UNMm5OA.:18962:0:99999:7:::
+[ec2-user@ip-172-31-32-73 ~]$
+[ec2-user@ip-172-31-32-73 ~]$
+[ec2-user@ip-172-31-32-73 ~]$
+[ec2-user@ip-172-31-32-73 ~]$ grep suhail /etc/passwd
+suhail:x:1001:1001::/home/suhail:/bin/bash
+[ec2-user@ip-172-31-32-73 ~]$ grep ashis /etc/shadow
+grep: /etc/shadow: Permission denied
+[ec2-user@ip-172-31-32-73 ~]$ sudo grep ashis /etc/shadow
+ashis:$6$wzsHnlxv$/K/4U3FFsca4sT4AIZvz3CEFNDu3Gm1lXpXUMZnGzfQ27urVEUkAcwS8Qc9UQ0                                          58U8Ai6MXrLhaHb5UNMm5OA.:18962:0:99999:7:::
+
+[ec2-user@ip-172-31-32-73 ~]$ groupadd devops
+-bash: /usr/sbin/groupadd: Permission denied
+[ec2-user@ip-172-31-32-73 ~]$ sudo groupadd devops
+[ec2-user@ip-172-31-32-73 ~]$ tail /etc/group
+chrony:x:994:
+stapusr:x:156:
+stapsys:x:157:
+stapdev:x:158:
+screen:x:84:
+tcpdump:x:72:
+ec2-user:x:1000:
+suhail:x:1001:
+ashis:x:1002:
+devops:x:1003:
+
+[ec2-user@ip-172-31-32-73 ~]$ sudo gpasswd -a suhail devops
+Adding user suhail to group devops
+[ec2-user@ip-172-31-32-73 ~]$ tail /etc/group
+chrony:x:994:
+stapusr:x:156:
+stapsys:x:157:
+stapdev:x:158:
+screen:x:84:
+tcpdump:x:72:
+ec2-user:x:1000:
+suhail:x:1001:
+ashis:x:1002:
+devops:x:1003:suhail
+
+[ec2-user@ip-172-31-32-73 ~]$ sudo gpasswd -a ashis devops
+Adding user ashis to group devops
+[ec2-user@ip-172-31-32-73 ~]$ tail /etc/group
+chrony:x:994:
+stapusr:x:156:
+stapsys:x:157:
+stapdev:x:158:
+screen:x:84:
+tcpdump:x:72:
+ec2-user:x:1000:
+suhail:x:1001:
+ashis:x:1002:
+devops:x:1003:suhail,ashis
+[ec2-user@ip-172-31-32-73 ~]$ grep ashis /etc/group
+ashis:x:1002:
+devops:x:1003:suhail,ashis
+
+
+
+
+
