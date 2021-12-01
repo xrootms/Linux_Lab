@@ -1,0 +1,53 @@
+----------------------
+##//Attribute of files & Dirictory//##
+rwx r-- r--   1     root    root    32    july 04:00    file1
+permission   link   owner  gowner   siz    time&date    filename
+
+##//file permission//##
+   rwx rwx rwx       
+ -/---/---/---=    
+  own gown othr
+r=4
+w=2
+x=1
+# chmod 777 <filename>          (to change the access mode of file)
+# chown <userneme> <filename>   (to change the owner of file)
+# chgrp <group> <filename>      (to change the group of file)
+------------------------------------------------------------------
+
+           #//tar//#
+#tar cvf dirx.tar  (dirx/diry/dirz)
+#compress:-
+#gzip dirx.tar
+#ls - dirx.tar.gz
+#gunzip dirx.tar.gz
+#ls - dirx.tar
+#tar xvf dirx.tar
+#ls
+------------------------------------------
+          #//Links//#
+#ln      <hardlink for backup> #  
+#ln -s   <softlink for shortcut> # 
+
+#ln  file1    backupfile     <automatic backup syn>
+#ln -s file1 softfile
+#ls -l
+------------------------------------------
+           #//yum/apt//#
+//yum"-for-rhel-basedlinux//
+# sudo yum update
+# yum list installed  --> to list installed pkg
+# yum list installed | grep git
+# yum list available
+# yum list all (list all pkg)
+# yum inatall git -y
+# git --version
+------
+//apt"-for-ubuntu/debean-basedlinux//
+$sudo apt update
+$sudo apt install openjdk-8-jdk
+$java -version
+--------------------------------------
+$wget <url> (to download from internet)
+--------------------------------------
+#cat /etc/os-release (to check os version)
