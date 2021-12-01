@@ -51,3 +51,223 @@ $java -version
 $wget <url> (to download from internet)
 --------------------------------------
 #cat /etc/os-release (to check os version)
+------------------------------------------
+ubuntu@ip-172-31-45-80:~$ touch file2
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 0
+-rw-rw-r-- 1 ubuntu ubuntu 0 Dec  1 14:49 file2
+ubuntu@ip-172-31-45-80:~$ chmod 666 file2
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 0
+-rw-rw-rw- 1 ubuntu ubuntu 0 Dec  1 14:49 file2
+
+ubuntu@ip-172-31-45-80:~$ mkdir d1
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 4
+drwxrwxr-x 2 ubuntu ubuntu 4096 Dec  1 14:52 d1
+-rw-rw-rw- 1 ubuntu ubuntu    0 Dec  1 14:49 file2
+ubuntu@ip-172-31-45-80:~$ chmod 700 d1
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 4
+drwx------ 2 ubuntu ubuntu 4096 Dec  1 14:52 d1
+-rw-rw-rw- 1 ubuntu ubuntu    0 Dec  1 14:49 file2
+
+ubuntu@ip-172-31-45-80:~$ ls
+d1  file2
+ubuntu@ip-172-31-45-80:~$
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 4
+drwx------ 2 ubuntu ubuntu 4096 Dec  1 14:52 d1
+-rw-rw-rw- 1 ubuntu ubuntu    0 Dec  1 14:49 file2
+ubuntu@ip-172-31-45-80:~$ chown root file2
+chown: changing ownership of 'file2': Operation not permitted
+ubuntu@ip-172-31-45-80:~$ sudo chown root file2
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 4
+drwx------ 2 ubuntu ubuntu 4096 Dec  1 14:52 d1
+-rw-rw-rw- 1 root   ubuntu    0 Dec  1 14:49 file2
+ubuntu@ip-172-31-45-80:~$ sudo chgrp root file2
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 4
+drwx------ 2 ubuntu ubuntu 4096 Dec  1 14:52 d1
+-rw-rw-rw- 1 root   root      0 Dec  1 14:49 file2
+ubuntu@ip-172-31-45-80:~$
+ubuntu@ip-172-31-45-80:~$ ls
+d1  file2
+
+ubuntu@ip-172-31-45-80:~$ mkdir -p folder/f2/f3
+ubuntu@ip-172-31-45-80:~$ ls
+folder
+ubuntu@ip-172-31-45-80:~$ tree
+.
+└── folder
+    └── f2
+        └── f3
+
+3 directories, 0 files
+ubuntu@ip-172-31-45-80:~$ ls
+folder
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 4
+drwxrwxr-x 3 ubuntu ubuntu 4096 Dec  1 15:15 folder
+ubuntu@ip-172-31-45-80:~$ sudo tar -cvf folder.tar folder
+folder/
+folder/f2/
+folder/f2/f3/
+ubuntu@ip-172-31-45-80:~$ ls
+folder  folder.tar
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 16
+drwxrwxr-x 3 ubuntu ubuntu  4096 Dec  1 15:15 folder
+-rw-r--r-- 1 root   root   10240 Dec  1 15:15 folder.tar
+ubuntu@ip-172-31-45-80:~$ sudo gzip folder.tar.gz folder.tar
+gzip: folder.tar.gz: No such file or directory
+ubuntu@ip-172-31-45-80:~$ ls
+folder  folder.tar.gz
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 8
+drwxrwxr-x 3 ubuntu ubuntu 4096 Dec  1 15:15 folder
+-rw-r--r-- 1 root   root    156 Dec  1 15:15 folder.tar.gz
+ubuntu@ip-172-31-45-80:~$ sudo gunzip folder.tar.gz
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 16
+drwxrwxr-x 3 ubuntu ubuntu  4096 Dec  1 15:15 folder
+-rw-r--r-- 1 root   root   10240 Dec  1 15:15 folder.tar
+ubuntu@ip-172-31-45-80:~$ rm -rf folder
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 12
+-rw-r--r-- 1 root root 10240 Dec  1 15:15 folder.tar
+ubuntu@ip-172-31-45-80:~$ sudo tar -xvf folder.tar
+folder/
+folder/f2/
+folder/f2/f3/
+ubuntu@ip-172-31-45-80:~$ ls
+folder  folder.tar
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 16
+drwxrwxr-x 3 ubuntu ubuntu  4096 Dec  1 15:15 folder
+-rw-r--r-- 1 root   root   10240 Dec  1 15:15 folder.tar
+ubuntu@ip-172-31-45-80:~$
+ubuntu@ip-172-31-45-80:~$ ls
+folder  folder.tar
+
+ubuntu@ip-172-31-45-80:~$ rm -rf f*
+ubuntu@ip-172-31-45-80:~$ ls
+ubuntu@ip-172-31-45-80:~$
+
+ubuntu@ip-172-31-45-80:~$ cat > text1
+njdkdklddl
+ubuntu@ip-172-31-45-80:~$ ls
+text1
+ubuntu@ip-172-31-45-80:~$ cat text1
+njdkdklddl
+ubuntu@ip-172-31-45-80:~$ sudo ln text1 htext1
+ubuntu@ip-172-31-45-80:~$ ls
+htext1  text1
+ubuntu@ip-172-31-45-80:~$ cat htext1
+njdkdklddl
+ubuntu@ip-172-31-45-80:~$ cat text1
+njdkdklddl
+ubuntu@ip-172-31-45-80:~$ cat >> text1
+hi im from ranchi
+ubuntu@ip-172-31-45-80:~$
+ubuntu@ip-172-31-45-80:~$ cat text1
+njdkdklddl
+hi im from ranchi
+ubuntu@ip-172-31-45-80:~$ cat htext1
+njdkdklddl
+hi im from ranchi
+ubuntu@ip-172-31-45-80:~$ cat >> htext1
+lllllllll
+ubuntu@ip-172-31-45-80:~$
+ubuntu@ip-172-31-45-80:~$ cat text1
+njdkdklddl
+hi im from ranchi
+lllllllll
+ubuntu@ip-172-31-45-80:~$ cat htext1
+njdkdklddl
+hi im from ranchi
+lllllllll
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 8
+-rw-rw-r-- 2 ubuntu ubuntu 39 Dec  1 15:26 htext1
+-rw-rw-r-- 2 ubuntu ubuntu 39 Dec  1 15:26 text1
+ubuntu@ip-172-31-45-80:~$ rm text1
+ubuntu@ip-172-31-45-80:~$ ls
+htext1
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 4
+-rw-rw-r-- 1 ubuntu ubuntu 39 Dec  1 15:26 htext1
+ubuntu@ip-172-31-45-80:~$ ls
+htext1
+ubuntu@ip-172-31-45-80:~$ rm htext1
+ubuntu@ip-172-31-45-80:~$ ls
+ubuntu@ip-172-31-45-80:~$
+
+
+ubuntu@ip-172-31-45-80:~$ cat > txt2
+mmmmmm
+ubuntu@ip-172-31-45-80:~$
+ubuntu@ip-172-31-45-80:~$ ls
+txt2
+ubuntu@ip-172-31-45-80:~$ cat txt2
+mmmmmm
+ubuntu@ip-172-31-45-80:~$ ln -s txt2 softtext
+ubuntu@ip-172-31-45-80:~$ ls
+softtext  txt2
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 4
+lrwxrwxrwx 1 ubuntu ubuntu 4 Dec  1 15:30 softtext -> txt2
+-rw-rw-r-- 1 ubuntu ubuntu 7 Dec  1 15:29 txt2
+ubuntu@ip-172-31-45-80:~$ cat softtext
+mmmmmm
+ubuntu@ip-172-31-45-80:~$ cat txt2
+mmmmmm
+ubuntu@ip-172-31-45-80:~$ cat >> softtext
+bbbbbbb
+ubuntu@ip-172-31-45-80:~$ cat softtext
+mmmmmm
+bbbbbbb
+ubuntu@ip-172-31-45-80:~$ cat txt2
+mmmmmm
+bbbbbbb
+
+ubuntu@ip-172-31-45-80:~$ ls
+softtext  txt2
+ubuntu@ip-172-31-45-80:~$ rm txt2
+ubuntu@ip-172-31-45-80:~$ ls
+softtext
+ubuntu@ip-172-31-45-80:~$ ls -l
+total 0
+lrwxrwxrwx 1 ubuntu ubuntu 4 Dec  1 15:30 softtext -> txt2
+ubuntu@ip-172-31-45-80:~$ cat softtext
+cat: softtext: No such file or directory
+
+ubuntu@ip-172-31-45-80:~$ sudo apt update
+Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
+Hit:2 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu bionic InRelease
+Get:3 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
+Get:4 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]
+Fetched 252 kB in 1s (249 kB/s)
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+28 packages can be upgraded. Run 'apt list --upgradable' to see them.
+
+ubuntu@ip-172-31-45-80:~$ sudo apt install git
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+git is already the newest version (1:2.17.1-1ubuntu0.9).
+git set to manually installed.
+0 upgraded, 0 newly installed, 0 to remove and 28 not upgraded.
+
+ubuntu@ip-172-31-45-80:~$ git --version
+git version 2.17.1
+ubuntu@ip-172-31-45-80:~$ sudo cat /etc/os-release
+
+
+
+
+
+
